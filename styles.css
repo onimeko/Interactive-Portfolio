@@ -1,0 +1,2008 @@
+/*
+  INTERACTIVE PORTFOLIO STYLES
+  -------------------------------------
+  Shared stylesheet for the lobby, resume, Snake, and Pong pages.
+
+  STYLE NOTES
+  I keep site-wide colors in :root and the shared typography near the top of this file.
+  Major sections are grouped under labeled headers so I can find related rules quickly.
+*/
+
+:root {
+  --ink: #07111f;
+  --ink-2: #0d1b30;
+  --panel: rgba(12, 28, 49, 0.82);
+  --panel-solid: #0d2038;
+  --sky: #78c8ff;
+  --sky-2: #b9e7ff;
+  --gold: #ffc85c;
+  --gold-2: #ffe0a3;
+  --mint: #8bf0d4;
+  --white: #f7fbff;
+  --muted: #b9c8d8;
+  --danger: #ff7f8b;
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+  --soft-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --border: 1px solid rgba(185, 231, 255, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--ink);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--white);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(120, 200, 255, 0.16), transparent 33%),
+    radial-gradient(circle at 88% 16%, rgba(255, 200, 92, 0.13), transparent 31%),
+    linear-gradient(180deg, #07111f 0%, #0a1728 45%, #08121f 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.3;
+  background-image:
+    linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ------------------------------
+   SHARED NAVIGATION + BUTTONS
+------------------------------ */
+.site-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 0 12px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: var(--ink);
+  background: linear-gradient(135deg, var(--sky), var(--gold));
+  box-shadow: 0 10px 30px rgba(120, 200, 255, .2);
+}
+
+.topbar-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.pill,
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 10px 15px;
+  border: var(--border);
+  border-radius: 999px;
+  color: var(--white);
+  background: rgba(255,255,255,.045);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.pill:hover,
+.button:hover {
+  transform: translateY(-2px);
+  background: rgba(120, 200, 255, .09);
+  border-color: rgba(120, 200, 255, .45);
+}
+
+.button.primary {
+  border: 0;
+  color: var(--ink);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--sky), var(--gold));
+  box-shadow: 0 12px 28px rgba(120, 200, 255, .18);
+}
+
+.button.ghost {
+  background: transparent;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--gold);
+  font-size: .78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.page-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 5vw, 4.4rem);
+  line-height: .98;
+  letter-spacing: -.055em;
+}
+
+.page-copy {
+  max-width: 690px;
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 1.02rem;
+}
+
+/* ------------------------------
+   HOME / INTERACTIVE LOBBY
+------------------------------ */
+.hero {
+  padding: 28px 0 24px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 34px;
+  align-items: end;
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 820px;
+  font-size: clamp(2.7rem, 7vw, 6.5rem);
+  line-height: .89;
+  letter-spacing: -.065em;
+}
+
+.hero h1 span {
+  color: var(--sky);
+}
+
+.hero-side {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+.hero-side p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.quick-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quick-tag {
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.1);
+  color: var(--sky-2);
+  background: rgba(255,255,255,.035);
+  font-size: .82rem;
+}
+
+/*
+  Homepage professional links match the resume link style, with tighter spacing to keep
+  the hero compact.
+*/
+.home-contact-links {
+  margin-top: 0;
+}
+
+.home-contact-links a {
+  min-height: 36px;
+  padding-inline: 12px;
+}
+
+.lobby-card {
+  position: relative;
+  margin: 12px 0 26px;
+  padding: 12px;
+  border-radius: 30px;
+  border: 1px solid rgba(120, 200, 255, .2);
+  background: rgba(255,255,255,.035);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.lobby-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(120,200,255,.07), transparent 40%, rgba(255,200,92,.05));
+}
+
+.lobby-toolbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 8px 14px;
+}
+
+.lobby-toolbar strong {
+  font-size: .92rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.key-hint {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: var(--muted);
+  font-size: .84rem;
+}
+
+.keycap {
+  min-width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-bottom-width: 3px;
+  color: var(--white);
+  background: rgba(255,255,255,.055);
+  font-weight: 900;
+}
+
+/*
+  The lobby stage is the movement area. JavaScript positions the character inside this
+  element and uses the same area for collision checks.
+*/
+.lobby-stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  min-height: 430px;
+  overflow: hidden;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 50% 14%, rgba(120,200,255,.18), transparent 24%),
+    linear-gradient(180deg, #0f2036 0 57%, #0a1525 57% 100%);
+  isolation: isolate;
+  touch-action: none;
+}
+
+/* Decorative stars are drawn with CSS. */
+.lobby-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 42% 0;
+  opacity: .45;
+  background-image:
+    radial-gradient(circle at 9% 22%, #fff 0 1px, transparent 1.6px),
+    radial-gradient(circle at 24% 14%, #fff 0 1px, transparent 1.6px),
+    radial-gradient(circle at 72% 18%, #fff 0 1px, transparent 1.6px),
+    radial-gradient(circle at 89% 32%, #fff 0 1px, transparent 1.6px),
+    radial-gradient(circle at 61% 36%, #fff 0 1px, transparent 1.6px),
+    radial-gradient(circle at 35% 34%, #fff 0 1px, transparent 1.6px);
+  z-index: -3;
+}
+
+/* Perspective floor lines create depth in the lobby. */
+.floor-grid {
+  position: absolute;
+  inset: 56% -10% -18%;
+  z-index: -2;
+  transform: perspective(430px) rotateX(58deg);
+  transform-origin: top center;
+  background-image:
+    linear-gradient(rgba(120,200,255,.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120,200,255,.13) 1px, transparent 1px);
+  background-size: 54px 38px;
+  border-top: 1px solid rgba(120,200,255,.3);
+}
+
+.horizon-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 54%;
+  height: 18%;
+  transform: translate(-50%, -50%);
+  filter: blur(30px);
+  border-radius: 999px;
+  background: rgba(120,200,255,.13);
+  z-index: -2;
+}
+
+/*
+  My profile card stays on the left wall and remains smaller than the doors so the
+  room navigation stays visually dominant.
+*/
+.wall-profile {
+  position: absolute;
+  left: 2.5%;
+  top: 6%;
+  width: clamp(100px, 12vw, 148px);
+  padding: 7px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,200,92,.55);
+  background: rgba(7,17,31,.75);
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  transform: rotate(-1.5deg);
+}
+
+.wall-profile img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 50% 33%;
+  border-radius: 12px;
+}
+
+.wall-profile figcaption {
+  padding: 7px 4px 2px;
+  color: var(--gold-2);
+  font-size: clamp(.62rem, 1vw, .76rem);
+  text-align: center;
+  letter-spacing: .04em;
+}
+
+.stage-sign {
+  position: absolute;
+  right: 4%;
+  top: 6%;
+  max-width: 190px;
+  color: var(--muted);
+  font-size: clamp(.68rem, 1vw, .82rem);
+  line-height: 1.45;
+  text-align: right;
+}
+
+.stage-sign strong {
+  display: block;
+  color: var(--sky-2);
+  font-size: 1.1em;
+}
+
+.doors {
+  position: absolute;
+  left: 61%;
+  top: 18%;
+  width: min(64%, 760px);
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 4vw, 54px);
+  align-items: end;
+}
+
+.portal-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.portal-label {
+  font-size: clamp(.66rem, 1.2vw, .86rem);
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--sky-2);
+}
+
+.portal {
+  position: relative;
+  width: 100%;
+  max-width: 155px;
+  aspect-ratio: .7 / 1;
+  border: 2px solid var(--sky);
+  border-bottom-width: 5px;
+  border-radius: 10px 10px 2px 2px;
+  background:
+    linear-gradient(90deg, transparent 8%, rgba(255,255,255,.045) 8% 9%, transparent 9% 91%, rgba(255,255,255,.045) 91% 92%, transparent 92%),
+    linear-gradient(180deg, rgba(120,200,255,.05), rgba(120,200,255,.015));
+  box-shadow:
+    inset 0 0 0 6px rgba(120,200,255,.045),
+    0 0 24px rgba(120,200,255,.08);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  cursor: pointer;
+}
+
+.portal::before {
+  content: "";
+  position: absolute;
+  inset: 8% 12%;
+  border: 1px solid rgba(120,200,255,.38);
+  border-radius: 6px 6px 1px 1px;
+  background: linear-gradient(180deg, rgba(7,17,31,.92), rgba(13,32,56,.85));
+}
+
+.portal::after {
+  content: "";
+  position: absolute;
+  right: 16%;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 10px rgba(255,200,92,.85);
+}
+
+.portal:hover,
+.portal.is-near {
+  transform: translateY(-5px) scale(1.025);
+  border-color: var(--gold);
+  box-shadow: 0 0 35px rgba(255,200,92,.18);
+}
+
+.portal.resume-door {
+  border-color: var(--gold);
+}
+
+.portal.resume-door::before {
+  background: linear-gradient(180deg, rgba(255,200,92,.08), rgba(13,32,56,.9));
+}
+
+/*
+  CSS AVATAR / PLAYER
+  I assembled the character from simple HTML elements and CSS shapes so the player stays
+  lightweight and easy for me to adjust in one stylesheet.
+*/
+.player {
+  position: absolute;
+  left: 50%;
+  top: 76%;
+  width: 34px;
+  height: 54px;
+  z-index: 12;
+  transform: translate(-50%, -50%);
+  transition: filter .15s ease;
+  will-change: left, top;
+  filter: drop-shadow(0 8px 9px rgba(0,0,0,.38));
+}
+
+.player.walking .player-leg.left { animation: legSwing .26s infinite alternate; }
+.player.walking .player-leg.right { animation: legSwing .26s infinite alternate-reverse; }
+.player.walking .player-arm.left { animation: armSwing .26s infinite alternate-reverse; }
+.player.walking .player-arm.right { animation: armSwing .26s infinite alternate; }
+
+@keyframes legSwing {
+  from { transform: rotate(-12deg); }
+  to { transform: rotate(14deg); }
+}
+
+@keyframes armSwing {
+  from { transform: rotate(-16deg); }
+  to { transform: rotate(15deg); }
+}
+
+.player-head {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  transform: translateX(-50%);
+  border-radius: 46% 46% 44% 44%;
+  background: #b97555;
+  border: 1px solid rgba(0,0,0,.22);
+}
+
+.player-hair,
+.player-hair::before,
+.player-hair::after {
+  position: absolute;
+  border-radius: 50%;
+  background: #101114;
+}
+
+.player-hair {
+  left: 3px;
+  top: -4px;
+  width: 17px;
+  height: 9px;
+}
+
+.player-hair::before,
+.player-hair::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  top: 2px;
+}
+
+.player-hair::before { left: -4px; }
+.player-hair::after { right: -4px; }
+
+.player-body {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  width: 22px;
+  height: 24px;
+  transform: translateX(-50%);
+  border-radius: 7px 7px 5px 5px;
+  background: #4f6075;
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+.player-arm,
+.player-leg {
+  position: absolute;
+  transform-origin: top center;
+}
+
+.player-arm {
+  top: 23px;
+  width: 6px;
+  height: 21px;
+  border-radius: 999px;
+  background: #b97555;
+}
+.player-arm.left { left: 2px; }
+.player-arm.right { right: 2px; }
+
+.player-leg {
+  top: 40px;
+  width: 7px;
+  height: 16px;
+  border-radius: 0 0 4px 4px;
+  background: #172236;
+}
+.player-leg.left { left: 9px; }
+.player-leg.right { right: 9px; }
+
+.player-name {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 6px);
+  white-space: nowrap;
+  font-size: 9px;
+  font-weight: 900;
+  color: var(--gold-2);
+  text-shadow: 0 2px 5px #000;
+}
+
+.interaction-toast {
+  position: absolute;
+  left: 50%;
+  bottom: 4%;
+  z-index: 20;
+  transform: translateX(-50%) translateY(12px);
+  padding: 9px 12px;
+  border-radius: 999px;
+  color: var(--ink);
+  background: var(--gold);
+  font-size: .78rem;
+  font-weight: 900;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.interaction-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.mobile-dpad {
+  position: absolute;
+  right: 4%;
+  bottom: 5%;
+  z-index: 25;
+  display: none;
+  grid-template-columns: repeat(3, 42px);
+  grid-template-rows: repeat(2, 42px);
+  gap: 5px;
+}
+
+.dpad-btn {
+  border: 1px solid rgba(255,255,255,.16);
+  border-bottom-width: 3px;
+  border-radius: 10px;
+  color: var(--white);
+  background: rgba(7,17,31,.72);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.dpad-up { grid-column: 2; }
+.dpad-left { grid-column: 1; grid-row: 2; }
+.dpad-down { grid-column: 2; grid-row: 2; }
+.dpad-right { grid-column: 3; grid-row: 2; }
+
+.portfolio-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0 0 38px;
+}
+
+.info-card {
+  padding: 22px;
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  background: rgba(255,255,255,.035);
+  box-shadow: var(--soft-shadow);
+}
+
+.info-card h3 {
+  margin: 0 0 9px;
+  font-size: 1.06rem;
+}
+
+.info-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: .92rem;
+}
+
+.site-footer {
+  padding: 22px 0 36px;
+  text-align: center;
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+.site-footer strong {
+  color: var(--sky-2);
+}
+
+/* ------------------------------
+   RESUME PAGE
+------------------------------ */
+.resume-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 22px;
+  padding: 28px 0 48px;
+}
+
+.resume-sidebar,
+.resume-main {
+  border: var(--border);
+  border-radius: var(--radius-xl);
+  background: rgba(255,255,255,.035);
+  box-shadow: var(--soft-shadow);
+}
+
+.resume-sidebar {
+  align-self: start;
+  position: sticky;
+  top: 20px;
+  overflow: hidden;
+}
+
+.resume-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1.1;
+  object-fit: cover;
+  object-position: 50% 24%;
+}
+
+.resume-side-copy {
+  padding: 22px;
+}
+
+.resume-side-copy h1 {
+  margin: 0 0 6px;
+  font-size: 1.9rem;
+  letter-spacing: -.04em;
+}
+
+.resume-side-copy p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.resume-actions {
+  display: grid;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+.resume-main {
+  padding: clamp(22px, 4vw, 42px);
+}
+
+.resume-section + .resume-section {
+  margin-top: 34px;
+  padding-top: 34px;
+  border-top: 1px solid rgba(255,255,255,.09);
+}
+
+.resume-section h2 {
+  margin: 0 0 16px;
+  color: var(--gold-2);
+  font-size: .92rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.resume-section p,
+.resume-section li {
+  color: var(--muted);
+  line-height: 1.68;
+}
+
+.resume-section ul {
+  margin: 10px 0 0;
+  padding-left: 20px;
+}
+
+.role {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: baseline;
+}
+
+.role h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.role span {
+  color: var(--sky-2);
+  font-size: .88rem;
+}
+
+.skill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.skill {
+  padding: 8px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(120,200,255,.2);
+  color: var(--sky-2);
+  background: rgba(120,200,255,.05);
+  font-size: .85rem;
+}
+
+.project-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 20px;
+  align-items: start;
+}
+
+/*
+  Project tags are grid items. align-self prevents vertical stretching, and justify-self
+  keeps each pill contained inside its project card.
+*/
+.project-row > .skill {
+  align-self: start;
+  justify-self: end;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.project-link {
+  color: var(--sky-2);
+  font-weight: 800;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* ------------------------------
+   GAME PAGES
+------------------------------ */
+.game-page {
+  min-height: 100vh;
+}
+
+.game-hero {
+  padding: 30px 0 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: end;
+}
+
+.game-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 18px;
+  padding-bottom: 46px;
+}
+
+.canvas-card,
+.game-panel {
+  border: var(--border);
+  border-radius: var(--radius-xl);
+  background: rgba(255,255,255,.035);
+  box-shadow: var(--shadow);
+}
+
+.canvas-card {
+  padding: 14px;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  border-radius: 18px;
+  background: #081322;
+  touch-action: none;
+}
+
+.game-panel {
+  padding: 22px;
+}
+
+.game-panel h2,
+.game-panel h3 {
+  margin-top: 0;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stat {
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.045);
+}
+
+.stat span {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--muted);
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+.stat strong {
+  font-size: 1.55rem;
+}
+
+.game-help {
+  color: var(--muted);
+  line-height: 1.62;
+  font-size: .9rem;
+}
+
+.game-help kbd {
+  display: inline-block;
+  min-width: 26px;
+  margin: 1px 2px;
+  padding: 4px 6px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 6px;
+  background: rgba(255,255,255,.05);
+  color: var(--white);
+  font-family: inherit;
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+.game-buttons {
+  display: grid;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+.game-touch-controls {
+  display: none;
+  margin-top: 16px;
+  grid-template-columns: repeat(3, 52px);
+  justify-content: center;
+  gap: 6px;
+}
+
+.game-touch-controls .button {
+  min-height: 48px;
+  border-radius: 12px;
+  padding: 0;
+}
+
+/* ------------------------------
+   RESPONSIVE LAYOUT
+------------------------------ */
+
+/*
+  TABLET POLISH
+  I give the lobby extra vertical room on portrait tablets so the photo, doors, character,
+  and controls keep comfortable spacing.
+*/
+@media (max-width: 900px) {
+  .hero,
+  .resume-layout,
+  .game-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    gap: 18px;
+  }
+
+  .lobby-stage {
+    aspect-ratio: 4 / 3;
+    min-height: 500px;
+  }
+
+  .wall-profile {
+    left: 3%;
+    top: 6%;
+    width: 108px;
+  }
+
+  .doors {
+    left: 60%;
+    top: 21%;
+    width: 72%;
+    gap: clamp(14px, 3vw, 30px);
+  }
+
+  .resume-sidebar {
+    position: static;
+    display: grid;
+    grid-template-columns: minmax(180px, .7fr) 1fr;
+  }
+
+  .resume-photo {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .portfolio-strip {
+    grid-template-columns: 1fr;
+  }
+
+  /*
+    On tablets and phones I keep the game board first. display: contents lets the panel
+    controls flow below the canvas instead of pushing the board farther down the page.
+  */
+  .game-panel {
+    display: contents;
+  }
+
+  .game-panel h2 {
+    display: none;
+  }
+
+  .canvas-card {
+    order: 1;
+  }
+
+  .game-buttons {
+    order: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 0;
+  }
+
+  .game-touch-controls {
+    order: 3;
+    margin-top: 0;
+  }
+
+  .game-panel .stat-grid {
+    order: 4;
+    max-width: none;
+    margin-bottom: 0;
+  }
+
+  .game-help {
+    order: 5;
+    margin: 0;
+    padding: 16px;
+    border: var(--border);
+    border-radius: var(--radius-md);
+    background: rgba(255,255,255,.035);
+  }
+}
+
+/*
+  Some touch tablets are wider than the phone breakpoint, so this pointer query keeps
+  the on screen controls available whenever touch is the primary input.
+*/
+@media (max-width: 1000px) and (pointer: coarse) {
+  .mobile-dpad,
+  .game-touch-controls {
+    display: grid;
+  }
+}
+
+/*
+  PHONE POLISH
+  On phones I use a taller lobby, compact resume spacing, and a small portrait card so
+  the layout feels intentional rather than like a compressed desktop view.
+*/
+@media (max-width: 700px) {
+  .site-shell {
+    width: min(100% - 20px, 1180px);
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 16px 0 10px;
+  }
+
+  .brand {
+    justify-content: center;
+  }
+
+  .topbar-links {
+    width: 100%;
+    justify-content: center;
+    gap: 7px;
+  }
+
+  .topbar-links .pill {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 38px;
+    padding: 8px 9px;
+    font-size: .8rem;
+    white-space: nowrap;
+  }
+
+  .hero {
+    padding-top: 14px;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    margin-inline: auto;
+    font-size: clamp(2.6rem, 14vw, 4.7rem);
+  }
+
+  .hero-side {
+    align-items: center;
+  }
+
+  .hero-side p {
+    max-width: 560px;
+  }
+
+  .quick-tags {
+    justify-content: center;
+  }
+
+  .lobby-card {
+    padding: 8px;
+    border-radius: 23px;
+  }
+
+  .lobby-toolbar {
+    justify-content: center;
+    padding-inline: 4px;
+  }
+
+  .key-hint {
+    display: none;
+  }
+
+  .lobby-stage {
+    min-height: 560px;
+    aspect-ratio: 2 / 3;
+    border-radius: 18px;
+  }
+
+  /* The mobile portrait has its own space above the doors. */
+  .wall-profile {
+    left: 50%;
+    top: 3.5%;
+    width: 108px;
+    transform: translateX(-50%) rotate(-1deg);
+    padding: 6px;
+    border-radius: 16px;
+  }
+
+  .wall-profile figcaption {
+    padding-top: 5px;
+    font-size: .58rem;
+  }
+
+  .doors {
+    left: 50%;
+    top: 31%;
+    width: 94%;
+    gap: 8px;
+  }
+
+  .portal {
+    max-width: 108px;
+  }
+
+  .portal-label {
+    font-size: .59rem;
+    letter-spacing: .1em;
+  }
+
+  .stage-sign {
+    display: none;
+  }
+
+  .player {
+    transform: translate(-50%, -50%) scale(.94);
+  }
+
+  .mobile-dpad {
+    right: 3%;
+    bottom: 3%;
+    grid-template-columns: repeat(3, 39px);
+    grid-template-rows: repeat(2, 39px);
+    gap: 4px;
+  }
+
+  .dpad-btn {
+    min-height: 39px;
+    padding: 0;
+    touch-action: none;
+  }
+
+  .mobile-dpad,
+  .game-touch-controls {
+    display: grid;
+  }
+
+  .portfolio-strip {
+    gap: 12px;
+    margin-bottom: 26px;
+  }
+
+  .info-card {
+    padding: 18px;
+  }
+
+  .resume-layout {
+    gap: 14px;
+    padding-top: 18px;
+  }
+
+  .resume-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-photo {
+    height: min(72vw, 280px);
+    aspect-ratio: auto;
+    object-position: 50% 24%;
+  }
+
+  .resume-side-copy {
+    padding: 18px;
+  }
+
+  .resume-main {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .resume-section + .resume-section {
+    margin-top: 28px;
+    padding-top: 28px;
+  }
+
+  .role,
+  .project-row,
+  .game-hero {
+    display: block;
+  }
+
+  .role span {
+    display: inline-block;
+    margin-top: 5px;
+  }
+
+  .skill-grid {
+    gap: 7px;
+  }
+
+  .skill {
+    padding: 7px 9px;
+    font-size: .78rem;
+  }
+
+  .project-row > .skill {
+    display: inline-block;
+    margin-top: 8px;
+    white-space: normal;
+  }
+
+  .game-hero {
+    padding: 22px 0 14px;
+  }
+
+  .game-hero .button {
+    margin-top: 12px;
+  }
+
+  .game-shell {
+    gap: 12px;
+  }
+
+  .canvas-card {
+    padding: 9px;
+    border-radius: 20px;
+  }
+
+  canvas {
+    border-radius: 13px;
+  }
+
+  .game-touch-controls .button {
+    touch-action: none;
+  }
+}
+
+/* Extra small phones use tighter navigation and door labels. */
+@media (max-width: 390px) {
+  .brand {
+    font-size: .93rem;
+  }
+
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+  }
+
+  .topbar-links .pill {
+    padding-inline: 7px;
+    font-size: .75rem;
+  }
+
+  .lobby-stage {
+    min-height: 540px;
+  }
+
+  .wall-profile {
+    width: 102px;
+  }
+
+  .doors {
+    width: 96%;
+    gap: 6px;
+  }
+
+  .portal-label {
+    font-size: .55rem;
+  }
+}
+
+/* PRINT STYLES
+   These rules remove decorative UI and convert the resume to a clean print layout when
+   I use the browser print dialog.
+*/
+@media print {
+  :root {
+    --white: #111;
+    --muted: #333;
+    --sky-2: #14466a;
+    --gold-2: #6a4a00;
+  }
+
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  body::before,
+  .topbar,
+  .resume-actions,
+  .site-footer {
+    display: none !important;
+  }
+
+  .site-shell {
+    width: 100%;
+  }
+
+  .resume-layout {
+    grid-template-columns: 230px 1fr;
+    padding: 0;
+  }
+
+  .resume-sidebar,
+  .resume-main {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    background: #fff;
+  }
+
+  .resume-sidebar {
+    position: static;
+  }
+
+  .skill {
+    border-color: #bbb;
+    color: #333;
+    background: #f5f5f5;
+  }
+}
+
+
+/* ==============================================================
+   INTERACTION POLISH
+   These additions keep the existing visual language while improving interaction cues,
+   accessibility, and page continuity.
+============================================================== */
+
+/* Short entrance and exit transitions make the separate HTML rooms feel connected. */
+body {
+  animation: pageIn .24s ease both;
+}
+
+body.page-exit {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .18s ease, transform .18s ease;
+  animation: none;
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Strong focus states keep keyboard navigation visible. */
+a:focus-visible,
+button:focus-visible,
+.lobby-stage:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.portal-wrap {
+  position: relative;
+}
+
+/* Each door includes a small visual cue for its destination. */
+.door-art {
+  position: absolute;
+  left: 50%;
+  top: 43%;
+  z-index: 3;
+  width: 44%;
+  height: 34%;
+  transform: translate(-50%, -50%);
+  opacity: .58;
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.portal:hover .door-art,
+.portal:focus-visible .door-art,
+.portal.is-near .door-art {
+  opacity: .95;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.snake-art {
+  display: grid;
+  grid-template-columns: repeat(3, 11px);
+  grid-auto-rows: 11px;
+  gap: 3px;
+  justify-content: center;
+  align-content: center;
+}
+
+.snake-art i {
+  width: 11px;
+  height: 11px;
+  border-radius: 4px;
+  background: var(--sky-2);
+  box-shadow: 0 0 12px rgba(185,231,255,.28);
+}
+
+.snake-art i:nth-child(1) { grid-column: 1; grid-row: 1; }
+.snake-art i:nth-child(2) { grid-column: 2; grid-row: 1; }
+.snake-art i:nth-child(3) { grid-column: 2; grid-row: 2; }
+.snake-art i:nth-child(4) { grid-column: 3; grid-row: 2; }
+.snake-art i:nth-child(5) { grid-column: 3; grid-row: 3; background: var(--gold); }
+
+.resume-art {
+  width: 38%;
+  height: 43%;
+  border: 2px solid var(--gold-2);
+  border-radius: 4px;
+}
+
+.resume-art::before {
+  content: "";
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  top: 22%;
+  height: 2px;
+  background: var(--gold-2);
+  box-shadow: 0 8px 0 rgba(255,224,163,.78), 0 16px 0 rgba(255,224,163,.55);
+}
+
+.resume-art i {
+  display: none;
+}
+
+.pong-art {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 4%;
+}
+
+.pong-art .paddle {
+  width: 5px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--sky-2);
+  box-shadow: 0 0 12px rgba(185,231,255,.35);
+}
+
+.pong-art .ball {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 12px rgba(255,200,92,.55);
+}
+
+/* Technology previews appear when a door is focused or active. */
+.portal-preview {
+  position: absolute;
+  left: 50%;
+  top: 31px;
+  z-index: 8;
+  width: max-content;
+  max-width: 180px;
+  transform: translate(-50%, 7px);
+  padding: 6px 8px;
+  border: 1px solid rgba(185,231,255,.16);
+  border-radius: 8px;
+  color: var(--white);
+  background: rgba(7,17,31,.94);
+  box-shadow: var(--soft-shadow);
+  font-size: .64rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .16s ease, transform .16s ease;
+}
+
+.portal:hover + .portal-preview,
+.portal:focus-visible + .portal-preview,
+.portal.is-near + .portal-preview {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Direction and idle states give the CSS character a little more movement. */
+.player-head::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 4px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #241915;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.08);
+  transition: left .12s ease, right .12s ease;
+}
+
+.player.facing-left .player-head::after {
+  left: 4px;
+  right: auto;
+}
+
+.player.facing-right .player-head::after {
+  right: 4px;
+  left: auto;
+}
+
+.player:not(.walking) .player-head,
+.player:not(.walking) .player-body {
+  animation: idleBob 1.9s ease-in-out infinite;
+}
+
+@keyframes idleBob {
+  0%, 100% { margin-top: 0; }
+  50% { margin-top: -1.5px; }
+}
+
+.mobile-lobby-help {
+  display: none;
+  margin: 0;
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Professional links stay compact so the resume content remains primary. */
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 14px;
+}
+
+.contact-links a,
+.project-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 7px 10px;
+  border: 1px solid rgba(120,200,255,.22);
+  border-radius: 999px;
+  color: var(--sky-2);
+  background: rgba(120,200,255,.055);
+  text-decoration: none;
+  font-size: .76rem;
+  font-weight: 800;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+
+.contact-links a:hover,
+.project-button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,200,92,.55);
+  background: rgba(255,200,92,.07);
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 13px;
+}
+
+/* Small screens use touch-specific guidance instead of desktop key hints. */
+@media (max-width: 700px) {
+  .lobby-toolbar {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .mobile-lobby-help {
+    display: block;
+  }
+
+  .portal-preview {
+    display: none;
+  }
+
+  .door-art {
+    width: 46%;
+    height: 32%;
+  }
+
+  .snake-art {
+    transform: translate(-50%, -50%) scale(.82);
+  }
+
+  .contact-links,
+  .project-actions {
+    justify-content: center;
+  }
+
+  .resume-side-copy {
+    text-align: center;
+  }
+}
+
+/* Reduced motion rules follow the operating system preference. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+
+  body.page-exit {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media print {
+  .contact-links,
+  .project-actions {
+    display: none !important;
+  }
+}
+
+
+/* ==============================================================
+   MOBILE TOUCH USABILITY
+   I keep these overrides together so mobile sizing, scrolling, and touch targets are easy
+   for me to maintain in one place.
+============================================================== */
+
+/* Project technology labels share the same row as their related links. */
+.project-actions .project-tech {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  /*
+    MOBILE PORTRAIT PLACEMENT
+    I keep my portrait as a small wall card in the upper left so the three doors remain
+    the main focus of the room.
+  */
+  .wall-profile {
+    left: 5%;
+    top: 4%;
+    width: 80px;
+    transform: rotate(-1deg);
+    padding: 5px;
+    border-radius: 13px;
+  }
+
+  .wall-profile img {
+    border-radius: 9px;
+  }
+
+  .wall-profile figcaption {
+    padding: 4px 2px 1px;
+    font-size: .49rem;
+    line-height: 1.25;
+  }
+
+  /* The doors sit slightly higher once the portrait is moved away from the center. */
+  .doors {
+    top: 27%;
+  }
+
+  /*
+    Normal vertical swipes scroll the page throughout the room. Only the movement buttons
+    suppress browser gestures.
+  */
+  .lobby-stage,
+  canvas {
+    touch-action: pan-y;
+  }
+
+  /* On phones, doors open only when I move the character into them. */
+  .portal {
+    pointer-events: none;
+    cursor: default;
+  }
+
+  /* Larger lobby D pad improves thumb accuracy. */
+  .mobile-dpad {
+    right: 3%;
+    bottom: 3%;
+    grid-template-columns: repeat(3, 56px);
+    grid-template-rows: repeat(2, 56px);
+    gap: 7px;
+  }
+
+  .dpad-btn {
+    min-width: 56px;
+    min-height: 56px;
+    border-radius: 15px;
+    font-size: 1.45rem;
+    touch-action: none;
+  }
+
+  /*
+    Larger game controls improve touch accuracy. Snake uses three columns while Pong uses two.
+  */
+  .game-touch-controls {
+    gap: 9px;
+  }
+
+  .snake-touch-controls {
+    grid-template-columns: repeat(3, 66px);
+  }
+
+  .pong-touch-controls {
+    grid-template-columns: repeat(2, 76px);
+  }
+
+  .game-touch-controls .button {
+    min-width: 66px;
+    min-height: 66px;
+    border-radius: 16px;
+    padding: 0;
+    font-size: 1.55rem;
+    touch-action: none;
+  }
+
+  .pong-touch-controls .button {
+    min-width: 76px;
+  }
+
+  /* Project links and technology labels stay together on one compact row. */
+  .project-actions {
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+  .project-actions .project-button,
+  .project-actions .project-tech {
+    min-height: 34px;
+    padding: 7px 9px;
+    font-size: .7rem;
+    line-height: 1;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 390px) {
+  /* Extra spacing for the smallest phones. */
+  .wall-profile {
+    width: 74px;
+  }
+
+  .mobile-dpad {
+    grid-template-columns: repeat(3, 54px);
+    grid-template-rows: repeat(2, 54px);
+    gap: 6px;
+  }
+
+  .dpad-btn {
+    min-width: 54px;
+    min-height: 54px;
+  }
+
+  .project-actions .project-button,
+  .project-actions .project-tech {
+    padding-inline: 8px;
+    font-size: .68rem;
+  }
+}
+
+/* ==============================================================
+   DESKTOP LOBBY PORTRAIT POSITION
+   I keep my portrait tucked into the upper left corner on desktop so it reads as a wall
+   card and does not compete with the doors.
+============================================================== */
+@media (min-width: 901px) {
+  .wall-profile {
+    left: 1.25%;
+    top: 2.5%;
+    width: clamp(94px, 9vw, 126px);
+    transform: rotate(-1deg);
+  }
+}
+
+
+/* ==============================================================
+   MOBILE SAFARI TOUCH PROTECTION
+   Safari can treat a long press on arrow glyphs like selectable text, so these rules
+   remove text-selection behavior from movement controls.
+============================================================== */
+.mobile-dpad,
+.dpad-btn,
+.game-touch-controls,
+.game-touch-controls .button {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+}
+
+.dpad-btn,
+.game-touch-controls .button {
+  -webkit-tap-highlight-color: transparent;
+  outline-offset: 4px;
+}
+
+@media (max-width: 700px) {
+  /* Pixel offsets pin the portrait to the room corner consistently. */
+  .wall-profile {
+    left: 10px;
+    top: 10px;
+    width: 70px;
+    padding: 4px;
+    border-radius: 12px;
+  }
+
+  .wall-profile figcaption {
+    padding: 3px 1px 1px;
+    font-size: .45rem;
+    line-height: 1.18;
+  }
+}
+
+@media (max-width: 390px) {
+  .wall-profile {
+    left: 8px;
+    top: 8px;
+    width: 66px;
+  }
+}
+
+
+/*
+  CSS DRAWN ARROWS
+  I draw the touch arrows with CSS instead of text glyphs so Safari has no arrow text
+  to select during a long press.
+*/
+.dpad-btn::before,
+[data-snake-dir]::before,
+[data-pong-dir]::before {
+  content: "";
+  display: block;
+  width: 15px;
+  height: 15px;
+  border: solid currentColor;
+  border-width: 0 3px 3px 0;
+  pointer-events: none;
+}
+
+.dpad-up::before,
+[data-snake-dir="up"]::before,
+[data-pong-dir="up"]::before {
+  transform: rotate(-135deg);
+}
+
+.dpad-right::before,
+[data-snake-dir="right"]::before {
+  transform: rotate(-45deg);
+}
+
+.dpad-down::before,
+[data-snake-dir="down"]::before,
+[data-pong-dir="down"]::before {
+  transform: rotate(45deg);
+}
+
+.dpad-left::before,
+[data-snake-dir="left"]::before {
+  transform: rotate(135deg);
+}
+
+
+/* ==============================================================
+   TOUCH CONTROL + PORTRAIT CORRECTIONS
+   I keep these overrides last so they take precedence over earlier responsive rules.
+============================================================== */
+
+/* Removing default figure margins lets left and top map directly to the room corner. */
+.wall-profile {
+  margin: 0;
+}
+
+/* CSS drawn arrows stay centered inside each tap target. */
+.dpad-btn,
+[data-snake-dir],
+[data-pong-dir] {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dpad-btn::before,
+[data-snake-dir]::before,
+[data-pong-dir]::before {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: 0;
+}
+
+.dpad-up::before,
+[data-snake-dir="up"]::before,
+[data-pong-dir="up"]::before {
+  transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+.dpad-right::before,
+[data-snake-dir="right"]::before {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.dpad-down::before,
+[data-snake-dir="down"]::before,
+[data-pong-dir="down"]::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.dpad-left::before,
+[data-snake-dir="left"]::before {
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+@media (max-width: 700px) {
+  /* Final upper left placement for my portrait inside the lobby stage. */
+  .wall-profile {
+    left: 4px;
+    top: 4px;
+    width: 64px;
+    margin: 0;
+    transform: none;
+  }
+
+  .wall-profile figcaption {
+    font-size: .43rem;
+    line-height: 1.12;
+  }
+}
+
+@media (max-width: 390px) {
+  .wall-profile {
+    left: 3px;
+    top: 3px;
+    width: 60px;
+  }
+}

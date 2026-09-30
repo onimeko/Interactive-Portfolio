@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Playable browser Pong game against a browser controlled opponent, built with vanilla JavaScript and Canvas by Jada Anderson." />
+  <meta name="theme-color" content="#07111f" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="canonical" href="https://onimeko.github.io/pong.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Pong | Jada Anderson" />
+  <meta property="og:description" content="Playable browser Pong game against a browser controlled opponent, built with vanilla JavaScript and Canvas by Jada Anderson." />
+  <meta property="og:url" content="https://onimeko.github.io/pong.html" />
+  <meta property="og:image" content="https://onimeko.github.io/assets/social-preview.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Jada Anderson interactive portfolio preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Pong | Jada Anderson" />
+  <meta name="twitter:description" content="Playable browser Pong game against a browser controlled opponent, built with vanilla JavaScript and Canvas by Jada Anderson." />
+  <meta name="twitter:image" content="https://onimeko.github.io/assets/social-preview.png" />
+  <title>Pong | Jada Anderson</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="js/site.js" defer></script>
+</head>
+<body class="game-page">
+  <!--
+    PONG GAME PAGE
+    ==============
+    js/pong.js handles paddle movement, browser opponent movement, collisions, scoring,
+    serve state, and canvas rendering.
+  -->
+
+  <header class="site-shell topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">JA</span><span>Interactive Portfolio</span></a>
+    <nav class="topbar-links"><a class="pill" href="index.html">← Lobby</a><a class="pill" href="resume.html">Resume</a><a class="pill" href="snake.html">Snake</a></nav>
+  </header>
+
+  <main class="site-shell">
+    <section class="game-hero">
+      <div>
+        <p class="eyebrow">Room 02 · JavaScript mini game</p>
+        <h1 class="page-title">Pong</h1>
+        <p class="page-copy">You versus the browser. First to 7 wins the round.</p>
+      </div>
+      <a class="button" href="index.html">Back to lobby</a>
+    </section>
+
+    <section class="game-shell">
+      <div class="canvas-card">
+        <canvas id="pongCanvas" width="960" height="600" aria-label="Pong game canvas"></canvas>
+      </div>
+
+      <aside class="game-panel">
+        <h2>Game panel</h2>
+        <div class="stat-grid">
+          <div class="stat"><span>You</span><strong id="playerScore">0</strong></div>
+          <div class="stat"><span>Browser</span><strong id="aiScore">0</strong></div>
+        </div>
+
+        <p class="game-help">
+          Use <kbd>W</kbd> / <kbd>S</kbd> or <kbd>↑</kbd> / <kbd>↓</kbd> to move.
+          Press <kbd>Space</kbd> to serve and <kbd>R</kbd> to restart.
+        </p>
+
+        <div class="game-buttons">
+          <button class="button primary" id="pongServe" type="button">Serve</button>
+          <button class="button" id="pongRestart" type="button">Restart match</button>
+        </div>
+
+        <div class="game-touch-controls pong-touch-controls" aria-label="Pong touch controls">
+          <button class="button" data-pong-dir="up" aria-label="Move paddle up"></button>
+          <button class="button" data-pong-dir="down" aria-label="Move paddle down"></button>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-shell site-footer">created by <strong>Jada Anderson</strong></footer>
+  <script src="js/pong.js"></script>
+</body>
+</html>

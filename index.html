@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Jada Anderson's interactive portfolio featuring IT support, device repair, web development, a playable lobby, Snake, Pong, and a web resume." />
+  <meta name="theme-color" content="#07111f" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="canonical" href="https://onimeko.github.io/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Jada Anderson | Interactive Portfolio" />
+  <meta property="og:description" content="Jada Anderson's interactive portfolio featuring IT support, device repair, web development, a playable lobby, Snake, Pong, and a web resume." />
+  <meta property="og:url" content="https://onimeko.github.io/" />
+  <meta property="og:image" content="https://onimeko.github.io/assets/social-preview.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Jada Anderson interactive portfolio preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Jada Anderson | Interactive Portfolio" />
+  <meta name="twitter:description" content="Jada Anderson's interactive portfolio featuring IT support, device repair, web development, a playable lobby, Snake, Pong, and a web resume." />
+  <meta name="twitter:image" content="https://onimeko.github.io/assets/social-preview.png" />
+  <title>Jada Anderson | Interactive Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="js/site.js" defer></script>
+</head>
+<body>
+  <!--
+    HOME / LOBBY PAGE
+    =================
+    Main landing page for the portfolio. I built the navigation as a small explorable
+    room, with each door leading to a different section of the site.
+  -->
+
+  <header class="site-shell topbar">
+    <a class="brand" href="index.html" aria-label="Go to Jada Anderson portfolio home">
+      <span class="brand-mark">JA</span>
+      <span>Interactive Portfolio</span>
+    </a>
+
+    <nav class="topbar-links" aria-label="Primary navigation">
+      <a class="pill" href="resume.html">Resume</a>
+      <a class="pill" href="snake.html">Snake</a>
+      <a class="pill" href="pong.html">Pong</a>
+    </nav>
+  </header>
+
+  <main class="site-shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">Welcome to my little corner of the web</p>
+        <h1 id="hero-title">Hi, I’m Jada.<br /><span>Walk around.</span></h1>
+      </div>
+
+      <div class="hero-side">
+        <p>
+          This portfolio mixes the things I enjoy most about technology: troubleshooting,
+          building, learning, and making experiences people can actually interact with.
+          Use <strong>WASD</strong> or the <strong>arrow keys</strong> to walk into a door.
+        </p>
+        <div class="quick-tags" aria-label="Portfolio focus areas">
+          <span class="quick-tag">IT Support</span>
+          <span class="quick-tag">Device Repair</span>
+          <span class="quick-tag">Web Development</span>
+          <span class="quick-tag">Game Development</span>
+        </div>
+
+        <!--
+          QUICK PROFESSIONAL LINKS
+          I keep these links compact so they stay easy to find without competing with
+          the interactive lobby. LinkedIn and GitHub open in a new tab, while Email uses
+          mailto to open a new message to me.
+        -->
+        <div class="contact-links home-contact-links" aria-label="Contact and professional profiles">
+          <a href="https://www.linkedin.com/in/jada-anderson-j5972" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/onimeko" target="_blank" rel="noopener">GitHub</a>
+          <a href="mailto:jadalynn.meadors@gmail.com">Email</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="lobby-card" aria-label="Interactive portfolio lobby">
+      <div class="lobby-toolbar">
+        <strong>Portfolio Lobby</strong>
+        <p class="mobile-lobby-help">Move the character into a door with the controls.</p>
+        <div class="key-hint" aria-hidden="true">
+          Move:
+          <span class="keycap">W</span>
+          <span class="keycap">A</span>
+          <span class="keycap">S</span>
+          <span class="keycap">D</span>
+        </div>
+      </div>
+
+      <!--
+        LOBBY STAGE
+        I use #lobbyStage as the movement coordinate system. js/lobby.js reads its
+        current size so movement and collision positions stay responsive.
+      -->
+      <div class="lobby-stage" id="lobbyStage" tabindex="0" aria-label="Interactive room. Use WASD or arrow keys to move the character into a door.">
+        <div class="floor-grid" aria-hidden="true"></div>
+        <div class="horizon-glow" aria-hidden="true"></div>
+
+        <!-- My edited portrait used as the wall profile card. -->
+        <figure class="wall-profile">
+          <img src="assets/jada-profile.webp" alt="Portrait of Jada Anderson" />
+          <figcaption>Jada Anderson · Builder + problem solver</figcaption>
+        </figure>
+
+        <div class="stage-sign">
+          <strong>Choose a room</strong>
+          Walk into a door. Desktop visitors can also click a door.
+        </div>
+
+        <!--
+          DOOR ROUTING
+          Each door stores its destination in data-page. lobby.js reads that value when
+          the character reaches the door. A new room can reuse the same .portal-wrap structure.
+        -->
+        <div class="doors" aria-label="Portfolio destinations">
+          <div class="portal-wrap">
+            <span class="portal-label">Snake</span>
+            <button class="portal snake-door" type="button" data-page="snake.html" aria-label="Enter the Snake game">
+              <span class="door-art snake-art" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i>
+              </span>
+            </button>
+            <span class="portal-preview">JavaScript · Canvas · Collision Detection</span>
+          </div>
+
+          <div class="portal-wrap">
+            <span class="portal-label">Resume</span>
+            <button class="portal resume-door" type="button" data-page="resume.html" aria-label="Enter the resume room">
+              <span class="door-art resume-art" aria-hidden="true">
+                <i></i><i></i><i></i>
+              </span>
+            </button>
+            <span class="portal-preview">Experience · Skills · Projects</span>
+          </div>
+
+          <div class="portal-wrap">
+            <span class="portal-label">Pong</span>
+            <button class="portal pong-door" type="button" data-page="pong.html" aria-label="Enter the Pong game">
+              <span class="door-art pong-art" aria-hidden="true">
+                <i class="paddle one"></i><i class="ball"></i><i class="paddle two"></i>
+              </span>
+            </button>
+            <span class="portal-preview">JavaScript · Canvas</span>
+          </div>
+        </div>
+
+        <!--
+          PLAYER CHARACTER
+          I built the character from CSS shapes instead of a separate sprite. Each small
+          element represents a body part and is styled in styles.css.
+        -->
+        <div class="player" id="player" aria-hidden="true">
+          <div class="player-head"><div class="player-hair"></div></div>
+          <div class="player-body"></div>
+          <div class="player-arm left"></div>
+          <div class="player-arm right"></div>
+          <div class="player-leg left"></div>
+          <div class="player-leg right"></div>
+          <span class="player-name">JADA</span>
+        </div>
+
+        <div class="interaction-toast" id="interactionToast" role="status" aria-live="polite">
+          Entering room…
+        </div>
+
+        <!-- Touch movement controls for phones and tablets. -->
+        <div class="mobile-dpad" aria-label="Touch movement controls">
+          <button class="dpad-btn dpad-up" data-key="up" aria-label="Move up"></button>
+          <button class="dpad-btn dpad-left" data-key="left" aria-label="Move left"></button>
+          <button class="dpad-btn dpad-down" data-key="down" aria-label="Move down"></button>
+          <button class="dpad-btn dpad-right" data-key="right" aria-label="Move right"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio-strip" aria-label="About this portfolio">
+      <article class="info-card">
+        <h3>Built without a framework</h3>
+        <p>Plain HTML, CSS, Canvas, and JavaScript keep the project readable and make every interaction easy to explain.</p>
+      </article>
+      <article class="info-card">
+        <h3>Built by learning through projects</h3>
+        <p>I organize and comment the code so I can understand each piece, explain my decisions, test what I built, and keep improving it.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-shell site-footer">
+    created by <strong>Jada Anderson</strong>
+  </footer>
+
+  <!-- Lobby movement and collision logic lives in js/lobby.js. -->
+  <script src="js/lobby.js"></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Resume and project overview for Jada Anderson, including hardware and software repair, technical support, web development, and game projects." />
+  <meta name="theme-color" content="#07111f" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="canonical" href="https://onimeko.github.io/resume.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Resume | Jada Anderson" />
+  <meta property="og:description" content="Resume and project overview for Jada Anderson, including hardware and software repair, technical support, web development, and game projects." />
+  <meta property="og:url" content="https://onimeko.github.io/resume.html" />
+  <meta property="og:image" content="https://onimeko.github.io/assets/social-preview.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Jada Anderson interactive portfolio preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Resume | Jada Anderson" />
+  <meta name="twitter:description" content="Resume and project overview for Jada Anderson, including hardware and software repair, technical support, web development, and game projects." />
+  <meta name="twitter:image" content="https://onimeko.github.io/assets/social-preview.png" />
+  <title>Resume | Jada Anderson</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="js/site.js" defer></script>
+</head>
+<body>
+  <!--
+    RESUME PAGE
+    ===========
+    I built this as a web resume so it fits the same interactive portfolio experience.
+    The print button uses the browser print dialog, and the print CSS switches the layout
+    to a clean white version for PDF or paper.
+
+    MAINTENANCE NOTES
+    I can update job dates, contact links, and experience bullets here as my resume changes.
+  -->
+
+  <header class="site-shell topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">JA</span>
+      <span>Interactive Portfolio</span>
+    </a>
+    <nav class="topbar-links" aria-label="Resume navigation">
+      <a class="pill" href="index.html">← Lobby</a>
+      <a class="pill" href="snake.html">Snake</a>
+      <a class="pill" href="pong.html">Pong</a>
+    </nav>
+  </header>
+
+  <main class="site-shell resume-layout">
+    <aside class="resume-sidebar">
+      <img class="resume-photo" src="assets/jada-profile.webp" alt="Portrait of Jada Anderson" />
+      <div class="resume-side-copy">
+        <p class="eyebrow">Resume room</p>
+        <h1>Jada Anderson</h1>
+        <p>IT Support · Device Repair · Web & Game Projects</p>
+
+        <div class="contact-links" aria-label="Professional links">
+          <a href="mailto:jadalynn.meadors@gmail.com">Email</a>
+          <a href="https://www.linkedin.com/in/jada-anderson-j5972" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/onimeko" target="_blank" rel="noopener">GitHub</a>
+        </div>
+
+        <div class="resume-actions">
+          <button class="button primary" type="button" onclick="window.print()">Print / Save as PDF</button>
+          <a class="button ghost" href="index.html">Return to lobby</a>
+        </div>
+      </div>
+    </aside>
+
+    <article class="resume-main">
+      <section class="resume-section">
+        <p class="eyebrow">Profile</p>
+        <h2>Professional Summary</h2>
+        <p>
+          Technology professional with hands on experience diagnosing and repairing hardware and
+          software issues across Windows PCs, Mac computers, mobile devices, and other consumer
+          technology. I also have experience with Apple repair workflows, customer support, and
+          practical web projects. I enjoy learning new tools quickly, solving problems methodically,
+          and turning technical ideas into experiences that are clear and useful for other people.
+        </p>
+      </section>
+
+      <section class="resume-section">
+        <h2>Experience</h2>
+        <div class="role">
+          <h3>Geek Squad · Advanced Repair Agent</h3>
+          <span>Technical Support & Repair</span>
+        </div>
+        <ul>
+          <li>Performed hardware and software diagnostics and repairs across Windows PCs, Mac computers, mobile devices, and other consumer technology.</li>
+          <li>Troubleshot Mac and Windows devices to identify operating system, software, hardware, connectivity, and performance issues.</li>
+          <li>Performed iPhone screen, battery, and back glass repairs using structured Apple repair workflows.</li>
+          <li>Explained technical problems and repair options in clear language for customers with different comfort levels.</li>
+          <li>Balanced device repair, customer service, documentation, and operational priorities in a fast paced environment.</li>
+        </ul>
+      </section>
+
+      <section class="resume-section">
+        <h2>Technical Skills</h2>
+        <div class="skill-grid" aria-label="Technical skills">
+          <span class="skill">Hardware and Software Diagnostics</span>
+          <span class="skill">Hardware and Software Repair</span>
+          <span class="skill">Windows Troubleshooting</span>
+          <span class="skill">macOS Troubleshooting</span>
+          <span class="skill">Software Troubleshooting</span>
+          <span class="skill">iPhone Repair</span>
+          <span class="skill">Customer Support</span>
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">Responsive Design</span>
+          <span class="skill">Git / GitHub</span>
+          <span class="skill">Unity Learning</span>
+        </div>
+      </section>
+
+      <section class="resume-section">
+        <h2>Selected Projects</h2>
+
+        <div class="project-row">
+          <div>
+            <h3>Interactive Portfolio</h3>
+            <p>
+              Designed and developed a responsive portfolio that combines a professional resume
+              with an explorable lobby, keyboard navigation, collision detection, Canvas based
+              games, touch controls, and accessible fallback navigation using vanilla JavaScript.
+            </p>
+            <div class="project-actions">
+              <a class="project-button" href="index.html">Project Home</a>
+              <a class="project-button" href="https://github.com/onimeko" target="_blank" rel="noopener">GitHub</a>
+              <span class="skill project-tech">HTML · CSS · JS</span>
+              <!-- Portfolio source link can point directly to this repository once the final repository URL is set. -->
+            </div>
+          </div>
+        </div>
+
+        <div class="project-row" style="margin-top: 24px;">
+          <div>
+            <h3>Genetik Bleu Salon Website</h3>
+            <p>
+              Designed and developed a mobile first production website for Genetik Bleu Salon,
+              featuring responsive layouts, multiple pages, client registration, salon policies,
+              a gallery, interactive interface details, and a live deployment at www.genetikbleu.com.
+            </p>
+            <div class="project-actions">
+              <a class="project-button" href="https://www.genetikbleu.com" target="_blank" rel="noopener">Live Site</a>
+              <a class="project-button" href="https://github.com/onimeko/Genetik-Bleu" target="_blank" rel="noopener">Source Code</a>
+              <span class="skill project-tech">Web Design</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="resume-section">
+        <h2>How I Work</h2>
+        <p>
+          I learn by building. I like breaking a problem into small pieces, understanding what each
+          part does, testing it, and improving the experience from the user's point of view. This
+          portfolio is intentionally built the same way: the code is separated by responsibility and
+          heavily commented so another person can understand how it works.
+        </p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-shell site-footer">created by <strong>Jada Anderson</strong></footer>
+</body>
+</html>

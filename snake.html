@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Playable browser Snake game built with vanilla JavaScript and Canvas by Jada Anderson." />
+  <meta name="theme-color" content="#07111f" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="canonical" href="https://onimeko.github.io/snake.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Snake | Jada Anderson" />
+  <meta property="og:description" content="Playable browser Snake game built with vanilla JavaScript and Canvas by Jada Anderson." />
+  <meta property="og:url" content="https://onimeko.github.io/snake.html" />
+  <meta property="og:image" content="https://onimeko.github.io/assets/social-preview.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Jada Anderson interactive portfolio preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Snake | Jada Anderson" />
+  <meta name="twitter:description" content="Playable browser Snake game built with vanilla JavaScript and Canvas by Jada Anderson." />
+  <meta name="twitter:image" content="https://onimeko.github.io/assets/social-preview.png" />
+  <title>Snake | Jada Anderson</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="js/site.js" defer></script>
+</head>
+<body class="game-page">
+  <!--
+    SNAKE GAME PAGE
+    ===============
+    js/snake.js draws the game into this canvas and handles movement, collisions, food,
+    scoring, pause state, and restart state.
+  -->
+
+  <header class="site-shell topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">JA</span><span>Interactive Portfolio</span></a>
+    <nav class="topbar-links"><a class="pill" href="index.html">← Lobby</a><a class="pill" href="resume.html">Resume</a><a class="pill" href="pong.html">Pong</a></nav>
+  </header>
+
+  <main class="site-shell">
+    <section class="game-hero">
+      <div>
+        <p class="eyebrow">Room 01 · JavaScript mini game</p>
+        <h1 class="page-title">Snake</h1>
+        <p class="page-copy">Eat the glowing data bits, grow longer, and avoid the walls and yourself.</p>
+      </div>
+      <a class="button" href="index.html">Back to lobby</a>
+    </section>
+
+    <section class="game-shell">
+      <div class="canvas-card">
+        <!-- Canvas width and height define the drawing resolution; CSS handles responsive sizing. -->
+        <canvas id="snakeCanvas" width="720" height="720" aria-label="Snake game canvas"></canvas>
+      </div>
+
+      <aside class="game-panel">
+        <h2>Game panel</h2>
+        <div class="stat-grid">
+          <div class="stat"><span>Score</span><strong id="snakeScore">0</strong></div>
+          <div class="stat"><span>Best</span><strong id="snakeBest">0</strong></div>
+        </div>
+
+        <p class="game-help">
+          Move with <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or the arrow keys.
+          Press <kbd>P</kbd> to pause and <kbd>R</kbd> to restart.
+        </p>
+
+        <div class="game-buttons">
+          <button class="button primary" id="snakeStart" type="button">Start / Restart</button>
+          <button class="button" id="snakePause" type="button">Pause</button>
+        </div>
+
+        <!-- Touch controls appear on smaller screens. -->
+        <div class="game-touch-controls snake-touch-controls" aria-label="Snake touch controls">
+          <span></span><button class="button" data-snake-dir="up" aria-label="Move snake up"></button><span></span>
+          <button class="button" data-snake-dir="left" aria-label="Move snake left"></button><button class="button" data-snake-dir="down" aria-label="Move snake down"></button><button class="button" data-snake-dir="right" aria-label="Move snake right"></button>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-shell site-footer">created by <strong>Jada Anderson</strong></footer>
+  <script src="js/snake.js"></script>
+</body>
+</html>

@@ -40,7 +40,7 @@ For a quick local check, I can open `index.html` directly in a browser. For norm
 
 ## GitHub Pages deployment
 
-The project is structured as a static site, so I can publish the same folder structure directly with GitHub Pages. The canonical and social preview URLs currently use `https://onimeko.github.io/`.
+The project is structured as a static site, so I can publish the same folder structure directly with GitHub Pages. The canonical and social preview URLs currently use `https://jadaanderson.dev/`.
 
 ## Resume maintenance
 
